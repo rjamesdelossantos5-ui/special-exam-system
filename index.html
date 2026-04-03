@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExamPass | Teacher Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="student-dashboard.css"> 
+    <link rel="stylesheet" href="teacher-dashboard.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Exam<span>Pass</span></div>
+            
+            <div class="nav-actions">
+                
+                <button class="notif-btn" id="notifBtn">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notif-badge">6</span> </button>
+
+                <div class="notif-dropdown hidden" id="notifDropdown">
+                    <div class="notif-header">
+                        <h3>Notifications</h3>
+                        <p>6 new notifications</p>
+                    </div>
+                    <div class="notif-body">
+                        <div class="notif-item">
+                            <div class="notif-icon-bg">
+                                <i class="fa-regular fa-file-lines"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h4>New Application</h4>
+                                <p>Juan Dela Cruz submitted a special exam request for Mathematics 101</p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+                        <div class="notif-item">
+                            <div class="notif-icon-bg">
+                                <i class="fa-regular fa-file-lines"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h4>New Application</h4>
+                                <p>Maria Santos submitted a special exam request for Mathematics 101</p>
+                                <span class="notif-time">3 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notif-footer">
+                        <a href="#">View all notifications</a>
+                    </div>
+                </div>
+
+                <div class="user-profile" id="userProfileBtn">
+                    <div class="user-details">
+                        <span class="user-name">Prof. Maria Rodriguez</span>
+                        <span class="user-role">Teacher</span>
+                    </div>
+                    <div class="avatar teacher-avatar">MR</div>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 12px; color: #888;"></i>
+
+                    <div class="profile-dropdown hidden" id="profileDropdown">
+                        <ul>
+                            <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                            <li><a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <div>
+                <h1>Pending Student Applications</h1>
+                <p class="sub-title">Review and approve special exam requests from your students</p>
+            </div>
+        </header>
+
+        <a href="teacher-math-subject.html" class="card-link">
+        <div class="dashboard-grid">
+            <div class="card teacher-card">
+                <div class="card-icon-container">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span class="count-badge">3</span>
+                </div>
+                <div class="card-info">
+                    <h3 >Mathematics 101</h3>
+                    <p class="pending-text">3 pending approvals</p>
+                </div>
+            </div>
+</a>
+            <div class="card teacher-card">
+                <div class="card-icon-container">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span class="count-badge">2</span>
+                </div>
+                <div class="card-info">
+                    <h3>English 102</h3>
+                    <p class="pending-text">2 pending approvals</p>
+                </div>
+            </div>
+
+            <div class="card teacher-card">
+                <div class="card-icon-container">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+                <div class="card-info">
+                    <h3>Chemistry 101</h3>
+                    <p class="sub-title">No pending requests</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="teacher-dashboard.js"></script>
+</body>
+</html>
