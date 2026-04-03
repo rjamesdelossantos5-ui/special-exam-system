@@ -1,0 +1,181 @@
+/* --- 1. GENERAL RESET & FONTS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- 2. NAVIGATION BAR --- */
+.navbar {
+    height: 70px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    border-bottom: 2px solid #fedc00; 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.text-black { color: #000000; }
+.highlight-yellow { color: #fedc00; }
+
+.login-btn-nav {
+    background-color: #fedc00;
+    color: #000;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn-nav:hover { background-color: #e6c700; }
+
+/* --- 3. FULL SCREEN HERO --- */
+.hero-full {
+    background-image: url('img/sti-img.webp'); 
+    background-size: cover;
+    background-position: center;
+    height: calc(100vh - 70px); 
+    width: 100%;
+    position: relative;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.2); 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+}
+
+.hero-content {
+    max-width: 600px;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+}
+
+/* --- 4. LOGIN MODAL (No Blur & Smaller Size) --- */
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* Darkened background but NO blur */
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal.hidden { display: none; }
+
+.modal-content {
+    background: white;
+    width: 90%;
+    /* Reduced width to make it feel smaller */
+    max-width: 420px; 
+    border-radius: 12px;
+    position: relative;
+    padding: 30px;
+    text-align: left; /* Aligned left like your screenshot */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #bbb;
+}
+
+.modal-title {
+    color: #004c97;
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.section-title {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* --- 5. USER TYPE GRID --- */
+.user-btn-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px;
+}
+
+.user-login-link { text-decoration: none; }
+
+.btn-user {
+    width: 100%;
+    background-color: #fedc00; 
+    color: #004c97; 
+    border: none;
+    padding: 12px 5px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 13px;
+}
+
+.btn-user:hover {
+    background-color: #e6c700;
+    transform: translateY(-1px);
+}
+
+/* Registrar, Cashier, Admin gray styling */
+.btn-user.registrar, .btn-user.cashier, .btn-user.admin {
+    background-color: #eee;
+    color: #444;
+}
+
+.btn-user.registrar:hover, .btn-user.cashier:hover, .btn-user.admin:hover {
+    background-color: #e0e0e0;
+}
