@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExamPass | Special Exam Management System</title>
+    <link rel="stylesheet" href="landing-page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+   <nav class="navbar">
+    <div class="nav-container">
+        <div class="logo"><span class="text-black">EXAM</span><span class="highlight-yellow">PASS</span></div>
+        
+        <div class="nav-actions">
+            <button class="login-btn-nav" id="openLoginModal">Log in</button>
+        </div>
+    </div>
+</nav>
+
+<header class="hero-full">
+    <div class="hero-overlay">
+        <div class="hero-content">
+            <h1>Online Registration for Special Exams</h1>
+            <p>Streamline the request and approval of special examination applications.</p>
+            </div>
+    </div>
+</header>
+
+  <div class="modal hidden" id="loginModal">
+    <div class="modal-content login-modal">
+        <button class="close-modal-btn" id="closeLoginModal">&times;</button>
+        
+        <div class="modal-selection-centered">
+         
+            <p class="section-title">Select your portal to continue:</p>
+            
+            <div class="user-btn-grid">
+                <a href="student-dashboard.html" class="user-login-link"><button class="btn-user student">Student Login</button></a>
+                <a href="teacher-dashboard.html" class="user-login-link"><button class="btn-user teacher">Teacher Login</button></a>
+                <a href="program-head-dashboard.html" class="user-login-link"><button class="btn-user program-head">Program Head</button></a>
+                <a href="#" class="user-login-link"><button class="btn-user registrar">Registrar</button></a>
+                <a href="#" class="user-login-link"><button class="btn-user cashier">Cashier</button></a>
+                <a href="#" class="user-login-link"><button class="btn-user admin">Admin login</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="landing-page.js"></script>
+</body>
+</html>

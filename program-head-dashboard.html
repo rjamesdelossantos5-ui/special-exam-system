@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExamPass | Program Head</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="program-head-dashboard.css">
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">EXAM<span class="highlight">PASS</span></span>
+            </div>
+            <div class="nav-actions">
+                <button class="notif-btn" onclick="toggleNotifs()">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notif-badge">6</span>
+                </button>
+                
+                <div id="notifDropdown" class="notif-dropdown hidden">
+                    <div class="notif-header">
+                        <h3>Notifications</h3>
+                        <p>6 new notifications</p>
+                    </div>
+                    <div class="notif-list">
+                        <div class="notif-item">
+                            <div class="notif-icon first-app"><i class="fa-regular fa-clipboard"></i></div>
+                            <div class="notif-info">
+                                <strong>First Approval Request</strong>
+                                <p>Juan Dela Cruz - Mathematics 101</p>
+                                <span>30 mins ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notif-footer"><a href="#">View all</a></div>
+                </div>
+
+                <div class="user-profile">
+                    <div class="user-details">
+                        <span class="user-name">Dr. Roberto Cruz</span>
+                        <span class="user-role">Program Head</span>
+                    </div>
+                    <div class="avatar">RC</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Program Head Dashboard</h1>
+            <p class="sub-title">Manage special exam approvals and schedules</p>
+        </header>
+
+        <div class="tabs">
+            <button id="tabFirst" class="tab-link active" onclick="switchTab('first')">First Approach <span class="count">4</span></button>
+            <button id="tabFinal" class="tab-link" onclick="switchTab('final')">Final Approval <span class="count">3</span></button>
+            <button id="tabDept" class="tab-link" onclick="switchTab('dept')">Department Lists</button>
+            <button id="tabSched" class="tab-link" onclick="switchTab('sched')">Schedule Management</button>
+        </div>
+
+        <section id="deptGrid">
+            <h3 class="section-title">Select Department</h3>
+            <div id="gridContent" class="dashboard-grid"></div>
+        </section>
+
+        <section id="appView" class="hidden">
+            <div class="view-header">
+                <button class="btn-back" onclick="closeDept()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                <h2 id="currentDeptTitle">BSIT - Applications</h2>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Subject</th>
+                        <th>Teacher</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="appTableBody"></tbody>
+            </table>
+        </section>
+
+        <section id="termSelection" class="hidden">
+            <h3 class="section-title">Select Academic Term</h3>
+            <div class="dashboard-grid">
+                <div class="dept-card term-card" onclick="openMasterList('Prelim')">
+                    <div class="dept-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                    <h3>Prelim</h3>
+                    <p>View completed applications for Prelims</p>
+                </div>
+                <div class="dept-card term-card" onclick="openMasterList('Mid-term')">
+                    <div class="dept-icon"><i class="fa-solid fa-file-circle-check"></i></div>
+                    <h3>Mid-term</h3>
+                    <p>View completed applications for Mid-terms</p>
+                </div>
+                <div class="dept-card term-card" onclick="openMasterList('Pre-final')">
+                    <div class="dept-icon"><i class="fa-solid fa-file-signature"></i></div>
+                    <h3>Pre-final</h3>
+                    <p>View completed applications for Pre-finals</p>
+                </div>
+                <div class="dept-card term-card" onclick="openMasterList('Finals')">
+                    <div class="dept-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3>Finals</h3>
+                    <p>View completed applications for Finals</p>
+                </div>
+            </div>
+        </section>
+<section id="masterListView" class="hidden">
+    <div class="view-header">
+        <button class="btn-back" onclick="backToTerms()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+        <div class="header-flex">
+            <div>
+                <h2 id="masterListTitle">Prelim - Completed Applications</h2>
+                <div class="deadline-notice danger">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span>Deadline of submission for the list of students who will take the special exam: <strong>March 15, 2026</strong></span>
+                </div>
+            </div>
+            <button class="btn-excel-export" onclick="exportMasterListToExcel()">
+                <i class="fa-solid fa-file-excel"></i> Export All to Excel
+            </button>
+        </div>
+    </div>
+
+    <div class="sub-feature-tabs">
+        <button class="sub-tab active" onclick="showMasterFeature('paid', this)">Paid Special Exam</button>
+        <button class="sub-tab" onclick="showMasterFeature('summary', this)">Summary</button>
+        <button class="sub-tab" onclick="showMasterFeature('waived', this)">Waived Fee (Valid Reason)</button>
+    </div>
+
+    <div id="featurePaid" class="feature-view">
+        <table class="data-table master-table" id="paidTable">
+            <thead>
+                <tr>
+                    <th>Date Applied</th>
+                    <th>Student Name</th>
+                    <th>Section</th>
+                    <th>Subject / Course Title</th>
+                    <th>Subject Code</th>
+                    <th>Program / Strand</th>
+                </tr>
+            </thead>
+            <tbody id="paidBody"></tbody>
+        </table>
+    </div>
+
+    <div id="featureSummary" class="feature-view hidden">
+        <table class="data-table" id="summaryTable">
+            <thead>
+                <tr>
+                    <th>Subject Code</th>
+                    <th>Subject / Course</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody id="summaryBody"></tbody>
+        </table>
+    </div>
+
+    <div id="featureWaived" class="feature-view hidden">
+        <table class="data-table" id="waivedTable">
+            <thead>
+                <tr>
+                    <th>Date of Application</th>
+                    <th>Student Name</th>
+                    <th>Section</th>
+                    <th>Course/Subject Title</th>
+                    <th>Course/Subject Code</th>
+                    <th>Program/Strand</th>
+                    <th>Reason / Message</th>
+                </tr>
+            </thead>
+            <tbody id="waivedBody"></tbody>
+        </table>
+    </div>
+</section>
+
+        <section id="schedMainView" class="hidden">
+            <div class="view-header-row">
+                <h2 class="section-title">Schedule Management</h2>
+                <button class="btn-add-sched" onclick="showAddSchedForm()">
+                    <i class="fa-solid fa-plus"></i> Add Special Exam Schedule
+                </button>
+            </div>
+            
+            <div class="recent-label-bar">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>Recent Special Examination Schedules</span>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table" id="recentSchedTable">
+                    <thead>
+                        <tr>
+                            <th>Exam Date</th>
+                            <th>Subject</th>
+                            <th>Venue</th>
+                            <th>Proctor</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentSchedBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="scheduleFormView" class="hidden">
+            <div class="view-header">
+                <button class="btn-back" onclick="backToSchedMain()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                <h2>New Special Exam Schedule</h2>
+            </div>
+            <div class="schedule-form-card">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-calendar-days"></i> Select Examination Date</label>
+                        <input type="date" id="examDate" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-building"></i> Venue / Room</label>
+                        <input type="text" id="examVenue" class="form-input" placeholder="e.g. Comp Lab 2">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-clock"></i> Start Time</label>
+                        <input type="time" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-hourglass-end"></i> End Time</label>
+                        <input type="time" class="form-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-users"></i> Assigned Proctor</label>
+                    <select class="form-input">
+                        <option>Select Teacher...</option>
+                        <option>Prof. Rodriguez</option>
+                        <option>Prof. Garcia</option>
+                        <option>Prof. Santos</option>
+                    </select>
+                </div>
+                <button class="btn-save-sched" onclick="saveSchedule()">
+                    <i class="fa-solid fa-floppy-disk"></i> Confirm and Post Schedule
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <div id="rejectModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Reason for Rejection</h3>
+            <textarea id="rejectReasonInput" placeholder="Type reason here..."></textarea>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeRejectModal()">Cancel</button>
+                <button class="btn-submit-reject" onclick="confirmReject()">Submit Reject</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="detailsModal" class="modal-overlay hidden">
+        <div class="modal-content detail-card">
+            <h3 id="detailTitle">Schedule Details</h3>
+            <div class="detail-body" id="detailBodyContent"></div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeDetailsModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+ <a href="student-dashboard.html">Go to Student Dashboard for testing /</a>
+ <br/>
+  <a href="teacher-dashboard.html">Go to Teacher Dashboard for testing /</a>
+
+    <script src="program-head-dashboard.js"></script>
+
+
+</body>
+</html>
