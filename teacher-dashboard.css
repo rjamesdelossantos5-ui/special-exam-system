@@ -137,6 +137,23 @@
     font-weight: 600;
 }
 
+/* Ensure the logout item looks like a clickable button */
+.logout-link {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer; /* Makes it clear it's a link */
+    transition: background 0.2s;
+    font-size: 14px;
+    color: var(--text-dark);
+}
+
+.logout-link:hover {
+    background-color: #f5f5f5;
+    color: #f44336; /* Optional: turn text red on hover for logout */
+}
+
 .card-link {
     text-decoration: none;
     color: inherit;

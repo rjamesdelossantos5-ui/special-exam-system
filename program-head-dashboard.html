@@ -38,15 +38,21 @@
                     <div class="notif-footer"><a href="#">View all</a></div>
                 </div>
 
-                <div class="user-profile">
+                 <div class="user-profile" id="userProfileBtn">
                     <div class="user-details">
-                        <span class="user-name">Dr. Roberto Cruz</span>
+                        <span class="user-name">Rjames Delos Santos</span>
                         <span class="user-role">Program Head</span>
                     </div>
-                    <div class="avatar">RC</div>
+                    <div class="avatar teacher-avatar">RD</div>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 12px; color: #888;"></i>
+
+                    <div class="profile-dropdown hidden" id="profileDropdown">
+                        <ul>
+                            <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                            <li><a href="index.html" class="logout-link" onclick="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </div>
     </nav>
 
     <main class="container">
@@ -272,10 +278,6 @@
             </div>
         </div>
     </div>
-
- <a href="student-dashboard.html">Go to Student Dashboard for testing /</a>
- <br/>
-  <a href="teacher-dashboard.html">Go to Teacher Dashboard for testing /</a>
 
     <script src="program-head-dashboard.js"></script>
 

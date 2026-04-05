@@ -18,7 +18,7 @@ body {
 
 /* --- Navbar & Notifications --- */
 .navbar {
-    height: 75px;
+    height: 72px;
     background: #fff;
     display: flex;
     align-items: center;
@@ -118,7 +118,72 @@ body {
 }
 
 /* User Profile */
-.user-profile { display: flex; align-items: center; gap: 12px; }
+/* Container for positioning */
+.user-profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 10px;
+    border-radius: 50px;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+/* The Floating Dropdown Card */
+.profile-dropdown {
+    position: absolute;
+    top: calc(100% + 10px); /* Space below the profile */
+    right: 0;
+    width: 180px;
+    background: white;
+    border-radius: 12px; /* Rounded corners like your image */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Soft shadow */
+    padding: 8px;
+    z-index: 1000;
+    border: 1px solid rgba(0,0,0,0.05); /* Very light border */
+}
+
+/* Hide by default */
+.profile-dropdown.hidden {
+    display: none;
+}
+
+/* List Styling */
+.profile-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-dropdown li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #444;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.profile-dropdown li a:hover {
+    background-color: #f8f9fa;
+}
+
+/* Icon colors */
+.profile-dropdown i {
+    font-size: 16px;
+    color: #666;
+    width: 20px; /* Keeps text aligned */
+}
+
+/* Specific red color for Sign Out if desired */
+.logout-link:hover {
+    color: #d32f2f !important;
+}
+
 .user-details { text-align: right; }
 .user-name { font-weight: 700; display: block; }
 .user-role { font-size: 0.85rem; color: #777; }

@@ -46,6 +46,30 @@ function switchTab(tab) {
     renderGrid();
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const profileBtn = document.getElementById('userProfileBtn');
+    const dropdown = document.getElementById('profileDropdown');
+
+    // Toggle dropdown on click
+    profileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('hidden');
+    });
+
+    // Close dropdown when clicking outside
+    window.addEventListener('click', (e) => {
+        if (!profileBtn.contains(e.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
+});
+
+// Logout logic
+function logout() {
+    // You can add session clearing logic here
+    console.log("Redirecting to login...");
+}
+
 function renderGrid() {
     const grid = document.getElementById('gridContent');
     const count = studentData[currentTab].length;
